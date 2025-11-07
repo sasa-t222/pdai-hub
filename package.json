@@ -1,0 +1,13 @@
+{
+  "name": "hacker-designer-ai-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes and validates links for the static Hacker News UI.",
+  "main": "scrape.js",
+  "scripts": {
+    "start": "node scrape.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
