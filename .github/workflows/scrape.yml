@@ -1,0 +1,32 @@
+# .github/workflows/scrape.yml
+name: Daily Link Scraper
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at 00:00 UTC
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  scrape_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🛠️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: ⚙️ Run Scraper & Validator Script
+        run: node scrape.js
+        
+      - name: 💾 Commit and Push Updated Data
+        # This commits the changes made to the JSON file back to the repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 [Actions] Auto-updated validated links"
+          files: "public/links.json" # Important: must match the path in scrape.js
