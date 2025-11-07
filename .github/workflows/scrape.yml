@@ -8,6 +8,8 @@ on:
 
 jobs:
   scrape_data:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repository
